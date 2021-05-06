@@ -32,8 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="E-mail"
         android:inputType="textPersonName"
-        android:text="E-mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
@@ -44,8 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
+        android:hint="Contraseña"
         android:inputType="textPersonName"
-        android:text="Contraseña"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textEmail" />
@@ -72,7 +72,9 @@
         android:onClick="getActivityIntereses"
         android:text="Iniciar Sesion"
         android:textColor="@color/Letras"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegistrarse"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textContraseña" />
 
