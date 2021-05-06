@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //comentario de prueba de mawi a ver que pdo 2:11 pm 6 mayo 2021
     }
 
     public void getActivityDatos(View view)
