@@ -20,7 +20,6 @@ import java.util.Map;
 
 public class pantallaDatosRegistro extends AppCompatActivity {
 
-
     private Context context;
 
     @Override
@@ -32,14 +31,13 @@ public class pantallaDatosRegistro extends AppCompatActivity {
 
     public pantallaDatosRegistro(){
         context=this;
-
-
     }
 
 
     public void crearUsuario()
     {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         Map<String, Object> user = new HashMap<>();
         TextView txtNombre= (TextView)findViewById(R.id.editTextName);
         TextView txtCorreo= (TextView)findViewById(R.id.editTextCorreo);
@@ -60,13 +58,6 @@ public class pantallaDatosRegistro extends AppCompatActivity {
         CheckBox cbSeries=(CheckBox)findViewById(R.id.seriesCB2);
         CheckBox cbArt=(CheckBox)findViewById(R.id.arteCB2);
         CheckBox cbAstrology=(CheckBox)findViewById(R.id.astrologiaCB2);
-
-
-
-
-
-
-
 
         user.put("Nombre", nameS);
         user.put("Contraseña", passS);
@@ -90,7 +81,6 @@ public class pantallaDatosRegistro extends AppCompatActivity {
         else{user.put("Arte","False");}
         if(cbAstrology.isChecked())user.put("Astrologia","True");
         else{user.put("Astrologia","False");}
-
 
         db.collection("users").document(mailS).set(user);
 
