@@ -18,10 +18,6 @@ public class pantallaDatosEditar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_datos_editar);
     }
-/* Set the "capital" field of the city 'DC'
-db.collection("cities").doc("DC").update({
-        capital: true
-    });*/
 
     public void editarDatos()
     {

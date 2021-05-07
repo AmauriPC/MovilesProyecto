@@ -1,23 +1,33 @@
 package mx.aepc.proyectoparcial1moviles;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.HashMap;
-import java.util.Map;
+public class MainActivity extends AppCompatActivity implements OnCompleteListener<QuerySnapshot> {
 
-public class MainActivity extends AppCompatActivity {
-
+    TextView cont;
+    TextView username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        cont=(TextView)findViewById(R.id.textContraseña);
+        username=(TextView)findViewById(R.id.textEmail);
 
         //comentario de prueba de mawi a ver que pdo 2:11 pm 6 mayo 2021
     }
@@ -30,9 +40,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void getActivityIntereses(View view)
     {
-        Intent intent = new Intent(this, pantallaIntereses.class);
-        startActivity(intent);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference users = db.collection("users");
+        users.whereEqualTo("Contraseña", cont.getText().toString()).get().addOnCompleteListener(this);
     }
 
-
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+        Log.i("test","testeando");
+        if (task.isSuccessful()) {
+            for (QueryDocumentSnapshot document : task.getResult()) {
+                if(document.getId().equals(username.getText().toString())) {
+                    Intent intent = new Intent(this, pantallaIntereses.class);
+                    startActivity(intent);
+                }
+            }
+        } else {
+            Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
