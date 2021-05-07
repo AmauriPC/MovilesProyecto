@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
             for (QueryDocumentSnapshot document : task.getResult()) {
                 if(document.getId().equals(username.getText().toString())) {
                     Intent intent = new Intent(this, pantallaIntereses.class);
+                    intent.putExtra("userid", username.getText().toString());
                     startActivity(intent);
                 }
             }
