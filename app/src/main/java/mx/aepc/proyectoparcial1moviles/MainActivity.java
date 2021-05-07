@@ -17,12 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "elbisho");
-        user.put("last", "llanaSeLaCome");
-        user.put("born", 2000);
-        db.collection("users").document("elbisho@gmail.com").set(user);
+
 
         //comentario de prueba de mawi a ver que pdo 2:11 pm 6 mayo 2021
     }
