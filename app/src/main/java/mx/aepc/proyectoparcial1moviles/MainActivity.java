@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
-        user.put("first", "Mawi");
-        user.put("last", "Selacome2");
+        user.put("first", "elbisho");
+        user.put("last", "llanaSeLaCome");
         user.put("born", 2000);
-        db.collection("users").document("123@gmail.com").set(user);
+        db.collection("users").document("elbisho@gmail.com").set(user);
 
         //comentario de prueba de mawi a ver que pdo 2:11 pm 6 mayo 2021
     }
