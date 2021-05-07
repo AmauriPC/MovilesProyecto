@@ -65,7 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/BotonesColor"
-            android:onClick="tomarPic"
             android:text="Subir Foto"
             android:textColor="@color/Letras"
             app:layout_constraintEnd_toEndOf="parent"

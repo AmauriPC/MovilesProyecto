@@ -1,5 +1,6 @@
 package mx.aepc.proyectoparcial1moviles;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,6 +15,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -35,6 +39,7 @@ public class pantallaDatosEditar extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_datos_editar);
         userid=getIntent().getStringExtra("userid");
 
+
         CheckBox cbAnime=(CheckBox)findViewById(R.id.animeCB);
         CheckBox cbGames=(CheckBox)findViewById(R.id.videojuegosCB);
         CheckBox cbLiterature=(CheckBox)findViewById(R.id.literaturaCB);
@@ -44,15 +49,15 @@ public class pantallaDatosEditar extends AppCompatActivity {
         CheckBox cbSeries=(CheckBox)findViewById(R.id.seriesCB);
         CheckBox cbArt=(CheckBox)findViewById(R.id.arteCB);
         CheckBox cbAstrology=(CheckBox)findViewById(R.id.astrologiaCB);
-        if(isStoragePermissionGranted())
+        /*if(isStoragePermissionGranted())
         {
             Log.println(Log.ASSERT,"OK","Permisos concedidos");
-        }
+        }*/
 
     }
 
 
-
+    /*
     public boolean isStoragePermissionGranted() {
         final int STORAGE_PERMISSION = 100;
         int ACCESS_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -158,7 +163,7 @@ public class pantallaDatosEditar extends AppCompatActivity {
         }
 
 
-    }
+    }*/
 
     public void editarDatos()
     {
