@@ -1,9 +1,15 @@
 package mx.aepc.proyectoparcial1moviles;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -29,9 +35,52 @@ public class pantallaDatosEditar extends AppCompatActivity {
         CheckBox cbSeries=(CheckBox)findViewById(R.id.seriesCB);
         CheckBox cbArt=(CheckBox)findViewById(R.id.arteCB);
         CheckBox cbAstrology=(CheckBox)findViewById(R.id.astrologiaCB);
-
+        /*if(isStoragePermissionGranted())
+        {
+            Log.println(Log.ASSERT,"OK","Permisos concedidos de la camara papu");
+        }*/
 
     }
+
+    /*public boolean isStoragePermissionGranted() {
+        final int STORAGE_PERMISSION = 100;
+        int ACCESS_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if ((ACCESS_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION);
+            return false;
+        }
+        return true;
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        final int STORAGE_PERMISSION = 100;
+        if (requestCode == STORAGE_PERMISSION && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Log.println(Log.ASSERT,"OK","Permisos obtenidos de la camara makinola");
+        }
+        else
+        {
+            Log.println(Log.ASSERT,"NOK","No pos fue GG ya ni que hacerle con la camara campeon");
+        }
+    }*/
+
+    /*static final int REQUEST_IMAGE_CAPTURE=1;
+
+    public void tomarPic(View view)
+    {
+        try
+        {
+            int REQUEST_TAKE_PHOTO = 1;
+            Intent takePictureIntent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if(takePictureIntent.resolveActivity(getPackageManager()) != null)
+            {
+                startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
+            }
+        }catch (Exception e)
+        {
+            Log.println(Log.ASSERT, "error", "ni pex papu error en camara");
+        }
+    }*/
 
     public void editarDatos()
     {

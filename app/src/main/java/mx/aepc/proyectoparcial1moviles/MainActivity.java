@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        cont=(TextView)findViewById(R.id.textContraseña);
-        username=(TextView)findViewById(R.id.textEmail);
     }
 
     public void getActivityDatos(View view)
@@ -40,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
     {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference users = db.collection("users");
-        users.whereEqualTo("Contraseña", cont.getText().toString()).get().addOnCompleteListener(this);
     }
 
     @Override
