@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "837260165686",
+    "project_id": "platonicdb-6cdc7",
+    "storage_bucket": "platonicdb-6cdc7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837260165686:android:dbf93f0567748d3bcb8e97",
+        "android_client_info": {
+          "package_name": "mx.aepc.proyectoparcial1moviles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837260165686-tr98k5ion4oqk044rt0411euc22gke5b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsi_gu-05hKyWBi-CthF1w37vSbHIdRm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837260165686-tr98k5ion4oqk044rt0411euc22gke5b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
