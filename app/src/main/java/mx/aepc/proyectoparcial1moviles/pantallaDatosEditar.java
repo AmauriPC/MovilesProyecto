@@ -29,8 +29,6 @@ public class pantallaDatosEditar extends AppCompatActivity {
         CheckBox cbSeries=(CheckBox)findViewById(R.id.seriesCB);
         CheckBox cbArt=(CheckBox)findViewById(R.id.arteCB);
         CheckBox cbAstrology=(CheckBox)findViewById(R.id.astrologiaCB);
-
-
     }
 
     public void editarDatos()
