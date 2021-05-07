@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
         setContentView(R.layout.activity_main);
         cont=(TextView)findViewById(R.id.textContraseña);
         username=(TextView)findViewById(R.id.textEmail);
-
-        //comentario de prueba de mawi a ver que pdo 2:11 pm 6 mayo 2021
     }
 
     public void getActivityDatos(View view)

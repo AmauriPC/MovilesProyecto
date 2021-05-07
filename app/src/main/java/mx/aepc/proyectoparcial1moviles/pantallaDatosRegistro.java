@@ -112,6 +112,7 @@ public class pantallaDatosRegistro extends AppCompatActivity {
         else
         {
             Intent intent = new Intent(getApplicationContext(), pantallaIntereses.class);
+            intent.putExtra("userid",txtCorreo.getText().toString());
             startActivity(intent);
             crearUsuario();
             Toast.makeText(this, "¡Usuario Creado!", Toast.LENGTH_SHORT).show();
