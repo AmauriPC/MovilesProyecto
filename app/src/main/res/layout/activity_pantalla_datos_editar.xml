@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Fondo">
+    android:background="@color/Fondo"
+    android:onClick="tomarPic">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -32,18 +33,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/fotoPersona"
-            android:layout_width="181dp"
-            android:layout_height="228dp"
-            android:layout_marginTop="28dp"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/datosTV"
-            tools:srcCompat="@tools:sample/avatars" />
-
         <TextView
             android:id="@+id/interesesTV"
             android:layout_width="wrap_content"
@@ -63,13 +52,14 @@
             android:id="@+id/btnSubirFoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             android:backgroundTint="@color/BotonesColor"
+            android:onClick="tomarPic"
             android:text="Subir Foto"
             android:textColor="@color/Letras"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fotoPersona" />
+            app:layout_constraintTop_toBottomOf="@+id/lafoto" />
 
         <CheckBox
             android:id="@+id/animeCB"
@@ -182,6 +172,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/astrologiaCB"
             app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/lafoto"
+            android:layout_width="157dp"
+            android:layout_height="112dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datosTV"
+            app:srcCompat="@drawable/silueta" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

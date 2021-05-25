@@ -74,14 +74,125 @@
         android:layout_height="wrap_content"
         android:background="@color/BotonesColor"
         android:fontFamily="@font/montserrat"
-        android:text="Ninguno"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintVertical_bias="0.128" />
+
+    <TextView
+        android:id="@+id/textViewIntereses2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/BotonesColor"
+        android:fontFamily="@font/montserrat"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.128" />
+
+    <TextView
+        android:id="@+id/textViewIntereses3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/BotonesColor"
+        android:fontFamily="@font/montserrat"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.128" />
+
+    <TextView
+        android:id="@+id/textViewIntereses4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/BotonesColor"
+        android:fontFamily="@font/montserrat"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.371" />
+
+    <TextView
+        android:id="@+id/textViewIntereses5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/BotonesColor"
+        android:fontFamily="@font/montserrat"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.371" />
+
+    <TextView
+        android:id="@+id/textViewIntereses7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/BotonesColor"
+        android:fontFamily="@font/montserrat"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.371" />
+
+    <TextView
+        android:id="@+id/textViewIntereses8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/BotonesColor"
+        android:fontFamily="@font/montserrat"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.623" />
+
+    <TextView
+        android:id="@+id/textViewIntereses9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/BotonesColor"
+        android:fontFamily="@font/montserrat"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.623" />
+
+    <TextView
+        android:id="@+id/textViewIntereses10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/BotonesColor"
+        android:fontFamily="@font/montserrat"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.623" />
 
     <Button
         android:id="@+id/button4"

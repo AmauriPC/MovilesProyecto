@@ -1,43 +1,32 @@
 package mx.aepc.proyectoparcial1moviles;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class pantallaDatosEditar extends AppCompatActivity {
     String userid;
+    String interes,interes2,interes3,interes4,interes5,interes6,interes7,interes8,interes9;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_datos_editar);
         userid=getIntent().getStringExtra("userid");
+
 
 
         CheckBox cbAnime=(CheckBox)findViewById(R.id.animeCB);
@@ -49,121 +38,105 @@ public class pantallaDatosEditar extends AppCompatActivity {
         CheckBox cbSeries=(CheckBox)findViewById(R.id.seriesCB);
         CheckBox cbArt=(CheckBox)findViewById(R.id.arteCB);
         CheckBox cbAstrology=(CheckBox)findViewById(R.id.astrologiaCB);
-        /*if(isStoragePermissionGranted())
-        {
-            Log.println(Log.ASSERT,"OK","Permisos concedidos");
-        }*/
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(userid);
+
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    //Edad
+                    interes = document.getString("Anime");
+                    //Log.d(message,interes);
+                    if (interes.equals("True")) {
+                        cbAnime.setChecked(true);
+                    }
+
+                    interes2 = document.getString("Videojuegos");
+                    if (interes2.equals("True")) {
+                        cbGames.setChecked(true);
+                    }
+
+                    interes3 = document.getString("Literatura");
+                    if (interes3.equals("True")) {
+                        cbLiterature.setChecked(true);
+                    }
+
+                    interes4= document.getString("Deportes");
+                    if (interes4.equals("True")) {
+                        cbSports.setChecked(true);
+                    }
+
+                    interes5= document.getString("Cine");
+                    if (interes5.equals("True")) {
+                        cbCine.setChecked(true);
+                    }
+
+                    interes6= document.getString("Musica");
+                    if (interes6.equals("True")) {
+                        cbMusic.setChecked(true);
+                    }
+
+                    interes7= document.getString("Series");
+                    if (interes7.equals("True")) {
+                        cbSeries.setChecked(true);
+                    }
+                    interes8= document.getString("Arte");
+                    if (interes8.equals("True")) {
+                        cbArt.setChecked(true);
+                    }
+                    interes9= document.getString("Astrologia");
+                    if (interes9.equals("True")) {
+                        cbAstrology.setChecked(true);
+                    }
+
+                } else {
+                    Log.println(Log.ASSERT,"MSG", "No such document");
+                }
+            } else {
+                Log.println(Log.ASSERT,"MSG", "get failed with "+task.getException());
+            }
+        });
+
+
+
+
 
     }
 
-
-    /*
-    public boolean isStoragePermissionGranted() {
-        final int STORAGE_PERMISSION = 100;
-        int ACCESS_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if ((ACCESS_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION);
-            return false;
-        }
-        return true;
-    }
-
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        final int STORAGE_PERMISSION = 100;
-        if (requestCode == STORAGE_PERMISSION && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.println(Log.ASSERT,"OK","Permisos obtenidos");
-        }
-        else
-        {
-            Log.println(Log.ASSERT,"NOK","No pos fue GG ya ni que hacerle");
-        }
-    }
 
     static final int REQUEST_IMAGE_CAPTURE=1;
 
     public void tomarPic(View view)
     {
-        try
-        {
-            int REQUEST_TAKE_PHOTO = 1;
-            Intent takePictureIntent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if(takePictureIntent.resolveActivity(getPackageManager()) != null)
-            {
-                startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
-            }
-        }catch (Exception e)
-        {
-            Log.println(Log.ASSERT, "error", "ni pex papu error en camara");
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK)
-        {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imgBitmap= (Bitmap) extras.get("data");
-            ImageView pic= (ImageView)findViewById(R.id.fotoPersona);
+            Bitmap imgBitmap = (Bitmap) extras.get("data");
+            ImageView pic = (ImageView) findViewById(R.id.lafoto);
             pic.setImageBitmap(imgBitmap);
 
 
-            String dateTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            /*String dateTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String name = "IMG_"+dateTime+"_";
-            saveMe(name, imgBitmap);
+            saveMe(name, imgBitmap);*/
 
 
         }
     }
 
-    private void saveMe(String nombre, Bitmap img) {
-        try{
-            //final String relativePath = Enviroment.DIRECTORY_PICTURES + File.separator + "Your directory";
-            String fileName = nombre;
-            //String mimType = "image/'": // Mine Types define here
-
-            Bitmap bitmap = img;
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
-            //contentValues.put(MediaStore.MediaColumns.TITLE, "");
-
-            ContentResolver resolver = getApplicationContext().getContentResolver();
-
-            OutputStream stream = null;
-            Uri uri = null;
-
-            try{
-                final Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                uri = resolver.insert(contentUri, contentValues);
-
-                stream = resolver.openOutputStream(uri);
-
-                boolean saved = bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream);
-
-            }catch (IOException e){
-                if (uri != null){
-                    resolver.delete(uri, null, null);
-                }
-
-            }finally {
-                if(stream != null){
-                    try{
-                        stream.close();
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-
-        }catch(Exception e){
-            Log.println(Log.ASSERT,"ERROR en cursor", e.toString());
-        }
 
 
-    }*/
 
     public void editarDatos()
     {
