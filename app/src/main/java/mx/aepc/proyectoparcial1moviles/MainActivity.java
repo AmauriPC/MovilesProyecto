@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
     @Override
     public void onComplete(@NonNull Task<QuerySnapshot> task) {
         Log.i("test","testeando");
-        if (false) {
+        if (task.isSuccessful()) {
             for (QueryDocumentSnapshot document : task.getResult()) {
                 if(document.getId().equals(username.getText().toString())) {
                     Intent intent = new Intent(this, pantallaIntereses.class);
