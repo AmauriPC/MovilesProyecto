@@ -1,6 +1,8 @@
 package mx.aepc.proyectoparcial1moviles;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -10,11 +12,15 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -98,11 +104,6 @@ public class pantallaDatosEditar extends AppCompatActivity {
                 Log.println(Log.ASSERT,"MSG", "get failed with "+task.getException());
             }
         });
-
-
-
-
-
     }
 
 
@@ -110,32 +111,56 @@ public class pantallaDatosEditar extends AppCompatActivity {
 
     public void tomarPic(View view)
     {
+        try
+        {
+            Log.println(Log.ASSERT, "entrando", "intentando");
+            int REQUEST_TAKE_PHOTO = 1;
+            Intent takePictureIntent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if(this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY))
+            {
+                startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
+            }
+            else
+            {
+                Log.println(Log.ASSERT, "entrando", "package manager null");
+            }
+        }catch (Exception e)
+        {
+            Log.println(Log.ASSERT, "murio", "F");
+            Log.println(Log.ASSERT, "error", "ni pex papu error en camara");
+        }
+    }
+
+    public void dispatchTakePictureIntent(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+        if (getApplicationContext().getPackageManager().hasSystemFeature(
+                PackageManager.FEATURE_CAMERA)) {
+            Log.println(Log.ASSERT, "Camara", "si hay camara papu");
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        } else {
+            Log.println(Log.ASSERT, "Camara", "no hay camara papu");
         }
     }
 
 
-    @Override
+
+        @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imgBitmap = (Bitmap) extras.get("data");
-            ImageView pic = (ImageView) findViewById(R.id.lafoto);
-            pic.setImageBitmap(imgBitmap);
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+                Bundle extras = data.getExtras();
+                Bitmap imgBitmap = (Bitmap) extras.get("data");
+                ImageView pic = (ImageView) findViewById(R.id.lafoto);
+                pic.setImageBitmap(imgBitmap);
 
 
-            /*String dateTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String name = "IMG_"+dateTime+"_";
-            saveMe(name, imgBitmap);*/
+                //String dateTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                //String name = "IMG_"+dateTime+"_";
+                //saveMe(name, imgBitmap);
 
 
+            }
         }
-    }
-
-
 
 
     public void editarDatos()
