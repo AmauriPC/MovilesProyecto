@@ -3,14 +3,19 @@ package mx.aepc.proyectoparcial1moviles;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +40,62 @@ public class pantallaMiPerfil extends AppCompatActivity {
         userid=getIntent().getStringExtra("userid");
         getDatos();
     }
+
+
+    static final int REQUEST_IMAGE_CAPTURE=1;
+
+    public void tomarPic(View view)
+    {
+        try
+        {
+            Log.println(Log.ASSERT, "entrando", "intentando");
+            int REQUEST_TAKE_PHOTO = 1;
+            Intent takePictureIntent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if(this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY))
+            {
+                startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
+            }
+            else
+            {
+                Log.println(Log.ASSERT, "entrando", "package manager null");
+            }
+        }catch (Exception e)
+        {
+            Log.println(Log.ASSERT, "murio", "F");
+            Log.println(Log.ASSERT, "error", "ni pex papu error en camara");
+        }
+    }
+
+    public void dispatchTakePictureIntent(View view) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (getApplicationContext().getPackageManager().hasSystemFeature(
+                PackageManager.FEATURE_CAMERA)) {
+            Log.println(Log.ASSERT, "Camara", "si hay camara papu");
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        } else {
+            Log.println(Log.ASSERT, "Camara", "no hay camara papu");
+        }
+    }
+
+
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            data.getData();
+            Bitmap imgBitmap = (Bitmap) extras.get("data");
+            ImageView pic = (ImageView) findViewById(R.id.imagenPerfil);
+            pic.setImageBitmap(imgBitmap);
+            //String dateTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            //String name = "IMG_"+dateTime+"_";
+            //saveMe(name, imgBitmap);
+
+
+        }
+    }
+
 
     public void getDatos(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -120,6 +181,7 @@ public class pantallaMiPerfil extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
