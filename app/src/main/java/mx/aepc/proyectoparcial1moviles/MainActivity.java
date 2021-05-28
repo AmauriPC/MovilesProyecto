@@ -1,23 +1,17 @@
 package mx.aepc.proyectoparcial1moviles;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import android.Manifest;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,9 +19,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements OnCompleteListener<QuerySnapshot> {
 
@@ -42,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
 
         if(isStoragePermissionGranted())
         {
-            Log.println(Log.ASSERT,"OK","Permisos concedidos");
+
         }
 
     }
@@ -62,11 +53,11 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         final int STORAGE_PERMISSION = 100;
         if (requestCode == STORAGE_PERMISSION && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.println(Log.ASSERT,"OK","Permisos obtenidos");
+
         }
         else
         {
-            Log.println(Log.ASSERT,"NOK","No pos fue GG ya ni que hacerle");
+
         }
     }
 
@@ -100,13 +91,13 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
                     finish();
                 }
                 else{
-                    Log.println(Log.ASSERT,"Correo","El correo no existe");
+
                 }
             }
         }
         if(i==0){
             Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
-        //Log.println(Log.ASSERT,"prueba","prueba"+task.isSuccessful());
+
     }
 }

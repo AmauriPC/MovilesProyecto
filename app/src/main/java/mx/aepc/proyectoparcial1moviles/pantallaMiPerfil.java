@@ -1,41 +1,22 @@
 package mx.aepc.proyectoparcial1moviles;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Looper;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.SettingsClient;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -51,7 +32,6 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 public class pantallaMiPerfil extends AppCompatActivity {
 
@@ -102,10 +82,10 @@ public class pantallaMiPerfil extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (getApplicationContext().getPackageManager().hasSystemFeature(
                 PackageManager.FEATURE_CAMERA)) {
-            Log.println(Log.ASSERT, "Camara", "si hay camara papu");
+
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         } else {
-            Log.println(Log.ASSERT, "Camara", "no hay camara papu");
+
         }
     }
 
@@ -148,7 +128,7 @@ public class pantallaMiPerfil extends AppCompatActivity {
                     if (document.exists()) {
                         //Edad
                         useredad = document.getString("Edad");
-                        //Log.i(message,"Edad: " + useredad);
+
                         text = "Edad: " + useredad;
                         TextView textView = (TextView) findViewById(R.id.textViewEdad);
                         textView.setText(text);
@@ -159,7 +139,7 @@ public class pantallaMiPerfil extends AppCompatActivity {
                         textView.setText(usernombre);
 
                         interes = document.getString("Anime");
-                        //Log.d(message,interes);
+
                         if (interes.equals("True")) {
                             TextView textView2=(TextView)findViewById(R.id.textViewIntereses);
                             textView2.setText("Anime");
@@ -212,10 +192,10 @@ public class pantallaMiPerfil extends AppCompatActivity {
                         }
 
                     } else {
-                        Log.println(Log.ASSERT,"MSG", "No such document");
+
                     }
                 } else {
-                    Log.println(Log.ASSERT,"MSG", "get failed with "+task.getException());
+
                 }
             }
         });
@@ -256,12 +236,13 @@ public class pantallaMiPerfil extends AppCompatActivity {
 
                 return true;
 
-            /*case R.id.panas:
+            case R.id.panas:
                 intent= new Intent(this, Panas.class);
                 intent.putExtra("userid", userid);
                 startActivity(intent);
+                finish();
 
-                return true;*/
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

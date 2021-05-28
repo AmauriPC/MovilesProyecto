@@ -1,28 +1,23 @@
 package mx.aepc.proyectoparcial1moviles;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -32,12 +27,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-
-import java.io.IOException;
-import java.util.Locale;
 
 public class pantallaIntereses extends AppCompatActivity {
 
@@ -59,7 +50,7 @@ public class pantallaIntereses extends AppCompatActivity {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (isGeoPermissionGranted()) {
-            Log.println(Log.ASSERT, "OK", "Permisos necesarios de mapas");
+
             createLocationRequest();
         }
 
@@ -73,7 +64,7 @@ public class pantallaIntereses extends AppCompatActivity {
                     latitud=location.getLatitude();
                     longitud=location.getLongitude();
 
-                    Log.println(Log.ASSERT, "Coordenadas", "Latitudzz: " + location.getLatitude() + ", " + "Longitud: "+location.getLongitude());
+
                 }
             }
         };
@@ -104,9 +95,9 @@ public class pantallaIntereses extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         final int MAPPS_PERMISSION = 100;
         if (requestCode == MAPPS_PERMISSION && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.println(Log.ASSERT, "OK", "Permisos obtenidos");
+
         } else {
-            Log.println(Log.ASSERT, "NOK", "No pos fue GG ya ni que hacerle");
+
         }
     }
 
@@ -128,7 +119,7 @@ public class pantallaIntereses extends AppCompatActivity {
         ((Task) task).addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
             @Override
             public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                Log.println(Log.ASSERT, "OK", "Localizacion actibvada");
+
             }
         });
     }
@@ -202,12 +193,13 @@ public class pantallaIntereses extends AppCompatActivity {
                 finish();
                 return true;
 
-            /*case R.id.panas:
+            case R.id.panas:
                 intent= new Intent(this, Panas.class);
                 intent.putExtra("userid",userid);
                 startActivity(intent);
+                finish();
 
-                return true;*/
+                return true;
 
             default:
                     return super.onOptionsItemSelected(item);

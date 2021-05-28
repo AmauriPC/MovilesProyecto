@@ -1,23 +1,18 @@
 package mx.aepc.proyectoparcial1moviles;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +22,8 @@ public class pantallaResultados extends AppCompatActivity {
 
     String anime,games,literature,sports,movie,music,series,art,astrology;
     String userid;
+
+    private RecyclerView.Adapter mAdapter;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Map<String, Object> user = new HashMap<>();
@@ -50,21 +47,16 @@ public class pantallaResultados extends AppCompatActivity {
         art=getIntent().getStringExtra("Arte");
         astrology=getIntent().getStringExtra("Astrologia");
 
-        Log.println(Log.ASSERT,"interes","anime: "+anime);
-        Log.println(Log.ASSERT,"interes","juegos: "+games);
-        Log.println(Log.ASSERT,"interes","lit: "+literature);
-        Log.println(Log.ASSERT,"interes","deporte: "+sports);
-        Log.println(Log.ASSERT,"interes","cine: "+movie);
-        Log.println(Log.ASSERT,"interes","musica: "+music);
-        Log.println(Log.ASSERT,"interes","series: "+series);
-        Log.println(Log.ASSERT,"interes","art: "+art);
-        Log.println(Log.ASSERT,"interes","ast: "+astrology);
 
         listaResultados = new ArrayList<>();
         recyclerResultados = (RecyclerView) findViewById(R.id.recyclerId);
-        recyclerResultados.setLayoutManager(new LinearLayoutManager(this));
+        recyclerResultados.setHasFixedSize(true);
+        recyclerResultados.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
 
         llenarResultados();
+        mAdapter= new AdapterResultados(listaResultados);
+        recyclerResultados.setAdapter(mAdapter);
+
 
         AdapterResultados adapter = new AdapterResultados(listaResultados);
         recyclerResultados.setAdapter(adapter);
@@ -73,70 +65,12 @@ public class pantallaResultados extends AppCompatActivity {
 
     private void llenarResultados() {
 
+        listaResultados.add(new ResultadosVo("Samantha","21", R.drawable.animeicon));
+        listaResultados.add(new ResultadosVo("Jesus","20", R.drawable.animeicon));
+        listaResultados.add(new ResultadosVo("Emiliano","20", R.drawable.animeicon));
+        listaResultados.add(new ResultadosVo("Lazca","20", R.drawable.animeicon));
+        listaResultados.add(new ResultadosVo("Mawi","21", R.drawable.animeicon));
 
-
-        //asynchronously retrieve all documents
-// future.get() blocks on response
-        /*List<QueryDocumentSnapshot> documents = ref.get().getDocuments();
-        for (QueryDocumentSnapshot document : documents) {
-            System.out.println(document.getId() + " => " + document.toObject(City.class));
-        }
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        //Edad
-                        useredad = document.getString("Edad");
-                        //Log.i(message,"Edad: " + useredad);
-                        text = "Edad: " + useredad;
-                        TextView textView = (TextView) findViewById(R.id.textViewEdad);
-                        textView.setText(text);
-                        //Nombre
-                        usernombre = document.getString("Nombre");
-                        textView = (TextView) findViewById(R.id.textViewNombre);
-                        textView.setText(usernombre);
-                        interes = document.getString("Anime");
-                        //Log.d(message,interes);
-                        if (interes == "True") {
-                            textinteres += "Anime \n";
-                        }
-                        //Log.d(message,textinteres);
-                        textView = (TextView) findViewById(R.id.textViewIntereses);
-                        textView.setText(textinteres);
-                    } else {
-                        Log.d(message, "No such document");
-                    }
-                } else {
-                    Log.d(message, "get failed with ", task.getException());
-                }
-            }
-        });*/
-
-        ArrayList<String> nombres;
-        ArrayList<String> edad;
-
-        db.collection("users")
-                .whereEqualTo("Anime", "True")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.println(Log.ASSERT, "OK",document.getId() + " => " + document.get("Anime"));
-                                //listaResultados.add(new ResultadosVo("dede","Edad: 20" , R.drawable.animeicon));
-                                
-                            }
-                        } else {
-                            Log.println(Log.ASSERT,"f", "Error getting documents: "+task.getException());
-                        }
-                    }
-                });
-
-        //listaResultados.add(new ResultadosVo("Random 2","30", R.drawable.articon));
-        //listaResultados.add(new ResultadosVo("Random 3","25", R.drawable.booksicon));
     }
 
 
@@ -173,11 +107,12 @@ public class pantallaResultados extends AppCompatActivity {
                 finish();
                 return true;
 
-            /*case R.id.panas:
+            case R.id.panas:
                 intent= new Intent(this, Panas.class);
                 intent.putExtra("userid",userid);
                 startActivity(intent);
-                return true;*/
+                finish();
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

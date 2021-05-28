@@ -1,14 +1,13 @@
 package mx.aepc.proyectoparcial1moviles;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class pantallaPerfilRandom extends AppCompatActivity {
 
@@ -53,11 +52,12 @@ public class pantallaPerfilRandom extends AppCompatActivity {
                 finish();
                 return true;
 
-            /*case R.id.panas:
+            case R.id.panas:
                 intent= new Intent(this, Panas.class);
                 intent.putExtra("userid", userid);
                 startActivity(intent);
-                return true;*/
+                finish();
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
