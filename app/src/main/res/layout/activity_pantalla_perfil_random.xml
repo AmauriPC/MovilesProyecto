@@ -87,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewEdad" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/textViewIntereses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -112,7 +112,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/textView21"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintStart_toEndOf="@+id/textViewIntereses"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
