@@ -13,12 +13,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class pantallaResultados extends AppCompatActivity {
 
     String anime,games,literature,sports,movie,music,series,art,astrology;
     String userid;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Map<String, Object> user = new HashMap<>();
 
     ArrayList<ResultadosVo> listaResultados;
     RecyclerView recyclerResultados;
@@ -103,10 +114,29 @@ public class pantallaResultados extends AppCompatActivity {
             }
         });*/
 
-        int edad = 20;
-        listaResultados.add(new ResultadosVo("Random 1","Edad: " + edad, R.drawable.animeicon));
-        listaResultados.add(new ResultadosVo("Random 2","30", R.drawable.articon));
-        listaResultados.add(new ResultadosVo("Random 3","25", R.drawable.booksicon));
+        ArrayList<String> nombres;
+        ArrayList<String> edad;
+
+        db.collection("users")
+                .whereEqualTo("Anime", "True")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.println(Log.ASSERT, "OK",document.getId() + " => " + document.get("Anime"));
+                                //listaResultados.add(new ResultadosVo("dede","Edad: 20" , R.drawable.animeicon));
+                                
+                            }
+                        } else {
+                            Log.println(Log.ASSERT,"f", "Error getting documents: "+task.getException());
+                        }
+                    }
+                });
+
+        //listaResultados.add(new ResultadosVo("Random 2","30", R.drawable.articon));
+        //listaResultados.add(new ResultadosVo("Random 3","25", R.drawable.booksicon));
     }
 
 
