@@ -2,14 +2,19 @@ package mx.aepc.proyectoparcial1moviles;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -23,6 +28,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,6 +58,8 @@ public class pantallaMiPerfil extends AppCompatActivity {
     String userid;
     String useredad, usernombre, interes,interes2,interes3,interes4,interes5,interes6,interes7,interes8,interes9;
     String text;
+
+
 
 
     @Override
@@ -73,32 +88,15 @@ public class pantallaMiPerfil extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
+
+
 
 
     static final int REQUEST_IMAGE_CAPTURE=1;
 
-    public void tomarPic(View view)
-    {
-        try
-        {
-            Log.println(Log.ASSERT, "entrando", "intentando");
-            int REQUEST_TAKE_PHOTO = 1;
-            Intent takePictureIntent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if(this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY))
-            {
-                startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
-            }
-            else
-            {
-                Log.println(Log.ASSERT, "entrando", "package manager null");
-            }
-        }catch (Exception e)
-        {
-            Log.println(Log.ASSERT, "murio", "F");
-            Log.println(Log.ASSERT, "error", "ni pex papu error en camara");
-        }
-    }
 
     public void dispatchTakePictureIntent(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -240,21 +238,45 @@ public class pantallaMiPerfil extends AppCompatActivity {
                 intent= new Intent(this, pantallaIntereses.class);
                 intent.putExtra("userid", userid);
                 startActivity(intent);
+                finish();
+
                 return true;
 
             case R.id.miPerfil:
                 intent= new Intent(this, pantallaMiPerfil.class);
                 intent.putExtra("userid", userid);
                 startActivity(intent);
+                finish();
+
                 return true;
             case R.id.cerrarSesion:
                 intent=  new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish();
+
                 return true;
+
+            /*case R.id.panas:
+                intent= new Intent(this, Panas.class);
+                intent.putExtra("userid", userid);
+                startActivity(intent);
+
+                return true;*/
 
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent= new Intent(this, pantallaIntereses.class);
+        intent.putExtra("userid", userid);
+        startActivity(intent);
+        finish();
+
+
     }
 
     public void getActivityEditar(View view)
@@ -262,6 +284,8 @@ public class pantallaMiPerfil extends AppCompatActivity {
         Intent intent = new Intent(this, pantallaDatosEditar.class);
         intent.putExtra("userid", userid);
         startActivity(intent);
+        finish();
+
     }
 
 

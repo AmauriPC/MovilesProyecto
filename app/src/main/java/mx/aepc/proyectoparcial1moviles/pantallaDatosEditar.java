@@ -1,6 +1,8 @@
 package mx.aepc.proyectoparcial1moviles;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -27,13 +30,13 @@ import java.util.Map;
 public class pantallaDatosEditar extends AppCompatActivity {
     String userid;
     String interes,interes2,interes3,interes4,interes5,interes6,interes7,interes8,interes9;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_datos_editar);
         userid=getIntent().getStringExtra("userid");
-
-
 
         CheckBox cbAnime=(CheckBox)findViewById(R.id.animeCB);
         CheckBox cbGames=(CheckBox)findViewById(R.id.videojuegosCB);
@@ -108,6 +111,8 @@ public class pantallaDatosEditar extends AppCompatActivity {
 
 
 
+
+
     public void editarDatos()
     {
         CheckBox cbAnime=(CheckBox)findViewById(R.id.animeCB);
@@ -177,6 +182,33 @@ public class pantallaDatosEditar extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+
+        builder.setMessage("¿Salir sin editar datos?")
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent= new Intent(getBaseContext(),pantallaMiPerfil.class);
+                        intent.putExtra("userid",userid);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog=builder.create();
+        alertDialog.show();
+
+    }
 
     public void getActivityIntereses(View view)
     {
@@ -184,5 +216,6 @@ public class pantallaDatosEditar extends AppCompatActivity {
         intent.putExtra("userid",userid);
         startActivity(intent);
         editarDatos();
+        finish();
     }
 }

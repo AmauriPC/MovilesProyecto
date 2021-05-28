@@ -1,11 +1,13 @@
 package mx.aepc.proyectoparcial1moviles;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
     {
         Intent intent = new Intent(this, pantallaDatosRegistro.class);
         startActivity(intent);
+        finish();
     }
 
     public void getActivityIntereses(View view)
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
                     Intent intent = new Intent(this, pantallaIntereses.class);
                     intent.putExtra("userid", username.getText().toString());
                     startActivity(intent);
+                    finish();
                 }
                 else{
                     Log.println(Log.ASSERT,"Correo","El correo no existe");

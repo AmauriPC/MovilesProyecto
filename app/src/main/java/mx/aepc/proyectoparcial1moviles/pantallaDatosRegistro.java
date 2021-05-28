@@ -102,6 +102,15 @@ public class pantallaDatosRegistro extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent= new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void getActivityIntereses(View view)
     {
         TextView txtNombre= (TextView)findViewById(R.id.editTextName);
@@ -124,7 +133,9 @@ public class pantallaDatosRegistro extends AppCompatActivity {
             intent.putExtra("userid",txtCorreo.getText().toString());
             startActivity(intent);
             crearUsuario();
+
             Toast.makeText(this, "¡Usuario Creado!", Toast.LENGTH_SHORT).show();
+
             Log.println(Log.ASSERT,"MSG","¡Usuario Creado!");
         }
 
