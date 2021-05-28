@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -17,13 +19,25 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 public class pantallaMiPerfil extends AppCompatActivity {
@@ -39,6 +53,26 @@ public class pantallaMiPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_mi_perfil);
         userid=getIntent().getStringExtra("userid");
         getDatos();
+        ImageView pic = (ImageView) findViewById(R.id.imagenPerfil);
+        FirebaseStorage storage = FirebaseStorage.getInstance("gs://platonicdb-6cdc7.appspot.com/");
+        StorageReference storageRef = storage.getReference(userid+".jpg");
+        try {
+            final File localFile=File.createTempFile("ProfilePic",".jpg");
+            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                   Bitmap imgbitmap= BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    pic.setImageBitmap(imgbitmap);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -88,6 +122,13 @@ public class pantallaMiPerfil extends AppCompatActivity {
             Bitmap imgBitmap = (Bitmap) extras.get("data");
             ImageView pic = (ImageView) findViewById(R.id.imagenPerfil);
             pic.setImageBitmap(imgBitmap);
+            FirebaseStorage storage = FirebaseStorage.getInstance("gs://platonicdb-6cdc7.appspot.com/");
+            StorageReference storageRef = storage.getReference(userid+".jpg");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            imgBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] databyte = baos.toByteArray();
+            UploadTask uploadTask = storageRef.putBytes(databyte);
+
             //String dateTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             //String name = "IMG_"+dateTime+"_";
             //saveMe(name, imgBitmap);
