@@ -12,10 +12,12 @@ import android.view.View;
 
 public class pantallaPerfilRandom extends AppCompatActivity {
 
+    String userid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_perfil_random);
+        userid = getIntent().getStringExtra("userid");
     }
 
     @Override
@@ -26,39 +28,52 @@ public class pantallaPerfilRandom extends AppCompatActivity {
     }
 
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent=null;
         switch(item.getItemId()){
             case R.id.menuPrincipal:
                 intent= new Intent(this, pantallaIntereses.class);
-
+                intent.putExtra("userid", userid);
                 startActivity(intent);
+                finish();
+
                 return true;
 
             case R.id.miPerfil:
                 intent= new Intent(this, pantallaMiPerfil.class);
-
+                intent.putExtra("userid", userid);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.cerrarSesion:
                 intent= new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
 
-            case R.id.panas:
+            /*case R.id.panas:
                 intent= new Intent(this, Panas.class);
+                intent.putExtra("userid", userid);
                 startActivity(intent);
-                return true;
+                return true;*/
 
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+    @Override
+    public void onBackPressed() {
 
-    public void getActivityIntereses(View view)
-    {
-        Intent intent = new Intent(this, pantallaIntereses.class);
+        Intent intent= new Intent(this, pantallaIntereses.class);
+        intent.putExtra("userid", userid);
         startActivity(intent);
+        finish();
+
     }
+
+
+
+
 }
