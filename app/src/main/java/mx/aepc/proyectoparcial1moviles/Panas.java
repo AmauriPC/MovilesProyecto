@@ -14,11 +14,12 @@ import android.view.View;
 public class Panas extends AppCompatActivity {
 
     String anime,games,literature,sports,movie,music,series,art,astrology;
-
+    String userid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panas);
+        userid = getIntent().getStringExtra("userid");
         anime=getIntent().getStringExtra("Anime");
         games=getIntent().getStringExtra("Videojuegos");
         literature=getIntent().getStringExtra("Literatura");
@@ -49,29 +50,35 @@ public class Panas extends AppCompatActivity {
     }
 
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent=null;
         switch(item.getItemId()){
             case R.id.menuPrincipal:
                 intent= new Intent(this, pantallaIntereses.class);
-
+                intent.putExtra("userid", userid);
                 startActivity(intent);
+
                 return true;
 
             case R.id.miPerfil:
                 intent= new Intent(this, pantallaMiPerfil.class);
-
+                intent.putExtra("userid", userid);
                 startActivity(intent);
+
                 return true;
             case R.id.cerrarSesion:
                 intent=  new Intent(this, MainActivity.class);
                 startActivity(intent);
+
                 return true;
 
             case R.id.panas:
                 intent= new Intent(this, Panas.class);
+                intent.putExtra("userid", userid);
                 startActivity(intent);
+
                 return true;
 
             default:
@@ -82,7 +89,19 @@ public class Panas extends AppCompatActivity {
     public void getActivityPerfilRandom(View view)
     {
         Intent intent = new Intent(this, pantallaPerfilRandom.class);
+        intent.putExtra("userid", userid);
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent= new Intent(this, pantallaIntereses.class);
+        intent.putExtra("userid", userid);
+        startActivity(intent);
+
+
     }
 
 }
