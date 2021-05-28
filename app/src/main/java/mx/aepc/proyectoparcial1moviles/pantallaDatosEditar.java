@@ -1,19 +1,17 @@
 package mx.aepc.proyectoparcial1moviles;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,8 +47,6 @@ public class pantallaDatosEditar extends AppCompatActivity {
         CheckBox cbSeries=(CheckBox)findViewById(R.id.seriesCB);
         CheckBox cbArt=(CheckBox)findViewById(R.id.arteCB);
         CheckBox cbAstrology=(CheckBox)findViewById(R.id.astrologiaCB);
-    }
-
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("users").document(userid);
@@ -112,6 +108,10 @@ public class pantallaDatosEditar extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 
     public void editarDatos()
     {
