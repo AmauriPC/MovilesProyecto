@@ -14,11 +14,14 @@ import android.view.View;
 public class pantallaResultados extends AppCompatActivity {
 
     String anime,games,literature,sports,movie,music,series,art,astrology;
+    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_resultados);
+        userid = getIntent().getStringExtra("userid");
+
         anime=getIntent().getStringExtra("Anime");
         games=getIntent().getStringExtra("Videojuegos");
         literature=getIntent().getStringExtra("Literatura");
@@ -41,6 +44,7 @@ public class pantallaResultados extends AppCompatActivity {
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
@@ -49,40 +53,60 @@ public class pantallaResultados extends AppCompatActivity {
     }
 
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent=null;
         switch(item.getItemId()){
             case R.id.menuPrincipal:
                 intent= new Intent(this, pantallaIntereses.class);
-
+                intent.putExtra("userid",userid);
                 startActivity(intent);
+                finish();
                 return true;
 
             case R.id.miPerfil:
                 intent= new Intent(this, pantallaMiPerfil.class);
-
+                intent.putExtra("userid",userid);
                 startActivity(intent);
+                finish();
+
                 return true;
             case R.id.cerrarSesion:
                 intent=  new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
 
-            case R.id.panas:
+            /*case R.id.panas:
                 intent= new Intent(this, Panas.class);
+                intent.putExtra("userid",userid);
                 startActivity(intent);
-                return true;
+                return true;*/
 
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent= new Intent(this, pantallaIntereses.class);
+        intent.putExtra("userid", userid);
+        startActivity(intent);
+        finish();
+
+    }
+
     public void getActivityPerfilRandom(View view)
     {
         Intent intent = new Intent(this, pantallaPerfilRandom.class);
+        intent.putExtra("userid",userid);
         startActivity(intent);
+        finish();
+
     }
 
 }
