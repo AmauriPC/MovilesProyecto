@@ -31,6 +31,7 @@ import java.util.List;
 
 public class pantallaResultados extends AppCompatActivity {
 
+
     /*private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference usersRef = db.collection("users");
     private DocumentReference userRef = db.document("userid");*/
@@ -38,10 +39,14 @@ public class pantallaResultados extends AppCompatActivity {
     ArrayList<ResultadosVo> listaResultados;
     RecyclerView recyclerResultados;
 
+    String anime,games,literature,sports,movie,music,series,art,astrology;
+    String userid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_resultados);
+
 
         listaResultados = new ArrayList<>();
         recyclerResultados = (RecyclerView) findViewById(R.id.recyclerId);
@@ -106,7 +111,29 @@ public class pantallaResultados extends AppCompatActivity {
         listaResultados.add(new ResultadosVo("Random 1","Edad: " + edad, R.drawable.animeicon));
         listaResultados.add(new ResultadosVo("Random 2","30", R.drawable.articon));
         listaResultados.add(new ResultadosVo("Random 3","25", R.drawable.booksicon));
+        userid = getIntent().getStringExtra("userid");
+
+        anime=getIntent().getStringExtra("Anime");
+        games=getIntent().getStringExtra("Videojuegos");
+        literature=getIntent().getStringExtra("Literatura");
+        sports=getIntent().getStringExtra("Deportes");
+        movie=getIntent().getStringExtra("Cine");
+        music=getIntent().getStringExtra("Musica");
+        series=getIntent().getStringExtra("Series");
+        art=getIntent().getStringExtra("Arte");
+        astrology=getIntent().getStringExtra("Astrologia");
+
+        Log.println(Log.ASSERT,"interes","anime: "+anime);
+        Log.println(Log.ASSERT,"interes","juegos: "+games);
+        Log.println(Log.ASSERT,"interes","lit: "+literature);
+        Log.println(Log.ASSERT,"interes","deporte: "+sports);
+        Log.println(Log.ASSERT,"interes","cine: "+movie);
+        Log.println(Log.ASSERT,"interes","musica: "+music);
+        Log.println(Log.ASSERT,"interes","series: "+series);
+        Log.println(Log.ASSERT,"interes","art: "+art);
+        Log.println(Log.ASSERT,"interes","ast: "+astrology);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -115,39 +142,60 @@ public class pantallaResultados extends AppCompatActivity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent=null;
         switch(item.getItemId()){
             case R.id.menuPrincipal:
                 intent= new Intent(this, pantallaIntereses.class);
-
+                intent.putExtra("userid",userid);
                 startActivity(intent);
+                finish();
                 return true;
 
             case R.id.miPerfil:
                 intent= new Intent(this, pantallaMiPerfil.class);
-
+                intent.putExtra("userid",userid);
                 startActivity(intent);
+                finish();
+
                 return true;
             case R.id.cerrarSesion:
                 intent=  new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
+
+            /*case R.id.panas:
+                intent= new Intent(this, Panas.class);
+                intent.putExtra("userid",userid);
+                startActivity(intent);
+                return true;*/
 
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent= new Intent(this, pantallaIntereses.class);
+        intent.putExtra("userid", userid);
+        startActivity(intent);
+        finish();
+
+    }
+
     public void getActivityPerfilRandom(View view)
     {
         Intent intent = new Intent(this, pantallaPerfilRandom.class);
+        intent.putExtra("userid",userid);
         startActivity(intent);
+        finish();
+
     }
-    public void getActivityIntereses(View view)
-    {
-        Intent intent = new Intent(this, pantallaIntereses.class);
-        startActivity(intent);
-    }
+
 }
