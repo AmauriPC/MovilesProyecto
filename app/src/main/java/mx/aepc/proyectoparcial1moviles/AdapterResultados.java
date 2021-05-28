@@ -9,34 +9,36 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public class AdapterResultados extends RecyclerView.Adapter<AdapterResultados.ViewHolderResultados> {
 
-    ArrayList<ResultadosVo> listaResultados;
+public class AdapterResultados extends FirestoreRecyclerAdapter<ResultadosVo, AdapterResultados.ViewHolderResultados> {
 
-    public AdapterResultados(ArrayList<ResultadosVo> listaResultados) {
-        this.listaResultados = listaResultados;
+    //ArrayList<ResultadosVo> listaResultados;
+
+    public AdapterResultados(@NonNull FirestoreRecyclerOptions<ResultadosVo> listaResultados) {
+       super(listaResultados);
     }
 
-    @NonNull
     @Override
     public ViewHolderResultados onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_obj, null, false);
         return new ViewHolderResultados(view);
     }
 
+    @NonNull
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderResultados holder, int position) {
-        holder.etiNombre.setText(listaResultados.get(position).getNombre());
-        holder.etiEdad.setText(listaResultados.get(position).getEdad());
-        holder.foto.setImageResource(listaResultados.get(position).getFoto());
+    public void onBindViewHolder(@NonNull ViewHolderResultados holder, int position, @NonNull ResultadosVo resultado) {
+        holder.etiNombre.setText(resultado.getNombre());
+        holder.etiEdad.setText(resultado.getEdad());
+        holder.foto.setImageResource(resultado.getFoto());
     }
 
-    @Override
+    /*@Override
     public int getItemCount() {
         return listaResultados.size();
-    }
+    }*/
 
     public class ViewHolderResultados extends RecyclerView.ViewHolder {
 
