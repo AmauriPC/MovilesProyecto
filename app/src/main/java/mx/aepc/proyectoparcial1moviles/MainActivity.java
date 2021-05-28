@@ -101,13 +101,6 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
         }
         if(i==0){
             Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-        } else {
-            Log.println(Log.ASSERT,"Nel","Contraseña o usuario incorrecto");
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(getBaseContext(), "Usuario o contraseña incorrectos", duration);
-            toast.show();
-
-            //Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
         //Log.println(Log.ASSERT,"prueba","prueba"+task.isSuccessful());
     }
