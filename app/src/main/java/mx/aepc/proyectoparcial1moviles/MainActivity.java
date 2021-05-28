@@ -98,11 +98,9 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
                     Log.println(Log.ASSERT,"Correo","El correo no existe");
                 }
             }
-<<<<<<< HEAD
         }
         if(i==0){
             Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-=======
         } else {
             Log.println(Log.ASSERT,"Nel","Contraseña o usuario incorrecto");
             int duration = Toast.LENGTH_SHORT;
@@ -110,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
             toast.show();
 
             //Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
->>>>>>> 798cf03b26da159d5341fcb7d5d21f29b4ec2dc5
         }
         //Log.println(Log.ASSERT,"prueba","prueba"+task.isSuccessful());
     }
