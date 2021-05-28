@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
                     Intent intent = new Intent(this, pantallaIntereses.class);
                     intent.putExtra("userid", username.getText().toString());
                     startActivity(intent);
+                    finish();
                 }
                 else{
                     Log.println(Log.ASSERT,"Correo","El correo no existe");
