@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
         if (task.isSuccessful()) {
             for (QueryDocumentSnapshot document : task.getResult()) {
                 if(document.getId().equals(username.getText().toString())) {
+                    i+=1;
                     String prueba=document.getId();
                     Intent intent = new Intent(this, pantallaIntereses.class);
                     intent.putExtra("userid", username.getText().toString());
