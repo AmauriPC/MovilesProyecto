@@ -19,17 +19,40 @@ public class AdapterResultados extends RecyclerView.Adapter<AdapterResultados.Vi
         this.listaResultados = listaResultados;
     }
 
-    @NonNull
-    @Override
-    public ViewHolderResultados onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_obj, null, false);
-        return new ViewHolderResultados(view);
+
+    public static class ViewHolderResultados extends RecyclerView.ViewHolder {
+
+        TextView etiNombre, etiEdad;
+        ImageView foto;
+
+        public ViewHolderResultados(View view) {
+            super(view);
+            etiNombre = (TextView) itemView.findViewById(R.id.idNombre);
+            etiEdad = (TextView) itemView.findViewById(R.id.idEdad);
+            foto = (ImageView) itemView.findViewById(R.id.idImagenSP);
+        }
     }
 
+    @NonNull
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderResultados holder, int position) {
-        holder.etiNombre.setText(listaResultados.get(position).getNombre());
-        holder.etiEdad.setText(listaResultados.get(position).getEdad());
+    public AdapterResultados.ViewHolderResultados onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view  = (View)LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_list_obj,parent, false);
+        AdapterResultados.ViewHolderResultados vh= new ViewHolderResultados(view);
+        return vh;
+    }
+
+
+
+
+
+
+    @Override
+    public void onBindViewHolder(final AdapterResultados.ViewHolderResultados  holder, int position) {
+        final ResultadosVo resultadosVoItem;
+        resultadosVoItem=listaResultados.get(position);
+        holder.etiNombre.setText((String)listaResultados.get(position).getNombre());
+        holder.etiEdad.setText((String)listaResultados.get(position).getEdad());
         holder.foto.setImageResource(listaResultados.get(position).getFoto());
     }
 
@@ -38,16 +61,4 @@ public class AdapterResultados extends RecyclerView.Adapter<AdapterResultados.Vi
         return listaResultados.size();
     }
 
-    public class ViewHolderResultados extends RecyclerView.ViewHolder {
-
-        TextView etiNombre, etiEdad;
-        ImageView foto;
-
-        public ViewHolderResultados(@NonNull View itemView) {
-            super(itemView);
-            etiNombre = (TextView) itemView.findViewById(R.id.idNombre);
-            etiEdad = (TextView) itemView.findViewById(R.id.idEdad);
-            foto = (ImageView) itemView.findViewById(R.id.idImagenSP);
-        }
-    }
 }

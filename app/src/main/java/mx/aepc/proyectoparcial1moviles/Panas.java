@@ -1,15 +1,14 @@
 package mx.aepc.proyectoparcial1moviles;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Panas extends AppCompatActivity {
 
@@ -30,15 +29,6 @@ public class Panas extends AppCompatActivity {
         art=getIntent().getStringExtra("Arte");
         astrology=getIntent().getStringExtra("Astrologia");
 
-        Log.println(Log.ASSERT,"interes","anime: "+anime);
-        Log.println(Log.ASSERT,"interes","juegos: "+games);
-        Log.println(Log.ASSERT,"interes","lit: "+literature);
-        Log.println(Log.ASSERT,"interes","deporte: "+sports);
-        Log.println(Log.ASSERT,"interes","cine: "+movie);
-        Log.println(Log.ASSERT,"interes","musica: "+music);
-        Log.println(Log.ASSERT,"interes","series: "+series);
-        Log.println(Log.ASSERT,"interes","art: "+art);
-        Log.println(Log.ASSERT,"interes","ast: "+astrology);
 
     }
 
@@ -59,6 +49,7 @@ public class Panas extends AppCompatActivity {
                 intent= new Intent(this, pantallaIntereses.class);
                 intent.putExtra("userid", userid);
                 startActivity(intent);
+                finish();
 
                 return true;
 
@@ -66,11 +57,13 @@ public class Panas extends AppCompatActivity {
                 intent= new Intent(this, pantallaMiPerfil.class);
                 intent.putExtra("userid", userid);
                 startActivity(intent);
+                finish();
 
                 return true;
             case R.id.cerrarSesion:
                 intent=  new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish();
 
                 return true;
 
@@ -78,6 +71,7 @@ public class Panas extends AppCompatActivity {
                 intent= new Intent(this, Panas.class);
                 intent.putExtra("userid", userid);
                 startActivity(intent);
+                finish();
 
                 return true;
 
@@ -91,6 +85,7 @@ public class Panas extends AppCompatActivity {
         Intent intent = new Intent(this, pantallaPerfilRandom.class);
         intent.putExtra("userid", userid);
         startActivity(intent);
+        finish();
 
     }
 
@@ -100,6 +95,7 @@ public class Panas extends AppCompatActivity {
         Intent intent= new Intent(this, pantallaIntereses.class);
         intent.putExtra("userid", userid);
         startActivity(intent);
+        finish();
 
 
     }

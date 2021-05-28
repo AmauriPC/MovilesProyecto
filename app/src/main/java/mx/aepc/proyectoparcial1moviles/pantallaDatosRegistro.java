@@ -1,20 +1,17 @@
 package mx.aepc.proyectoparcial1moviles;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -96,11 +93,6 @@ public class pantallaDatosRegistro extends AppCompatActivity {
 
     }
 
-    public void getActivityLog(View view)
-    {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
 
 
     @Override
@@ -125,7 +117,7 @@ public class pantallaDatosRegistro extends AppCompatActivity {
         if(nameS.matches("") || mailS.matches("") || passS.matches("") || ageS.matches(""))
         {
             Toast.makeText(this, "Hay un campo vacio, por favor verifica de nuevo", Toast.LENGTH_SHORT).show();
-            Log.println(Log.ASSERT,"MSG","Hay un campo vacio, por favor verifica de nuevo");
+
         }
         else
         {
@@ -135,8 +127,8 @@ public class pantallaDatosRegistro extends AppCompatActivity {
             crearUsuario();
 
             Toast.makeText(this, "¡Usuario Creado!", Toast.LENGTH_SHORT).show();
+            finish();
 
-            Log.println(Log.ASSERT,"MSG","¡Usuario Creado!");
         }
 
 
