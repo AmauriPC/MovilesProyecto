@@ -11,14 +11,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-public class pantallaResultados extends AppCompatActivity {
+public class Panas extends AppCompatActivity {
 
     String anime,games,literature,sports,movie,music,series,art,astrology;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pantalla_resultados);
+        setContentView(R.layout.activity_panas);
         anime=getIntent().getStringExtra("Anime");
         games=getIntent().getStringExtra("Videojuegos");
         literature=getIntent().getStringExtra("Literatura");

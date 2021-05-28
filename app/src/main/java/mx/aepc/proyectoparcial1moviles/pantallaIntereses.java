@@ -52,6 +52,11 @@ public class pantallaIntereses extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
+            case R.id.panas:
+                intent= new Intent(this, Panas.class);
+                startActivity(intent);
+                return true;
+
                 default:
                     return super.onOptionsItemSelected(item);
         }
