@@ -29,6 +29,7 @@
         android:layout_marginTop="68dp"
         android:background="@color/fondoIconos"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenPerfil" />
 
@@ -80,6 +81,7 @@
         android:layout_height="wrap_content"
         android:background="@color/BotonesColor"
         android:fontFamily="@font/montserrat"
+
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
@@ -170,6 +172,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintStart_toStartOf="@+id/textView14"
+
         app:layout_constraintTop_toBottomOf="@+id/textViewIntereses"
         app:layout_constraintVertical_bias="0.653" />
 

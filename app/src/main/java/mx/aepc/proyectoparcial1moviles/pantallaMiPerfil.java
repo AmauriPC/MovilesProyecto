@@ -14,6 +14,22 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.firestore.Source;
+
+import java.util.Map;
+
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -36,13 +52,9 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -51,15 +63,17 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 public class pantallaMiPerfil extends AppCompatActivity {
 
     String userid;
+
+   
+    String message;
+    Map<String, Object> userinfo;
+    private String Edad;
     String useredad, usernombre, interes,interes2,interes3,interes4,interes5,interes6,interes7,interes8,interes9;
     String text;
-
-
 
 
     @Override
@@ -68,6 +82,7 @@ public class pantallaMiPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_mi_perfil);
         userid=getIntent().getStringExtra("userid");
         getDatos();
+
         ImageView pic = (ImageView) findViewById(R.id.imagenPerfil);
         FirebaseStorage storage = FirebaseStorage.getInstance("gs://platonicdb-6cdc7.appspot.com/");
         StorageReference storageRef = storage.getReference(userid+".jpg");
@@ -221,14 +236,32 @@ public class pantallaMiPerfil extends AppCompatActivity {
         });
     }
 
+    public void getDatos(){
+        CheckBox cbAnime=(CheckBox)findViewById(R.id.animeCB);
+        CheckBox cbVideojuegos=(CheckBox)findViewById(R.id.videojuegosCB);
+        CheckBox cbLiteratura=(CheckBox)findViewById(R.id.literaturaCB);
+        CheckBox cbDeportes=(CheckBox)findViewById(R.id.deportesCB);
+        CheckBox cbCine=(CheckBox)findViewById(R.id.cineCB);
+        CheckBox cbMusica=(CheckBox)findViewById(R.id.musicaCB);
+        CheckBox cbSeries=(CheckBox)findViewById(R.id.seriesCB);
+        CheckBox cbArte=(CheckBox)findViewById(R.id.arteCB);
+        CheckBox cbAstrologia=(CheckBox)findViewById(R.id.astrologiaCB);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.action_bar_menu_datos,menu);
-        return true;
-    }
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(userid);
 
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        //Edad
+                        useredad = document.getString("Edad");
+                        //Log.i(message,"Edad: " + useredad);
+                        text = "Edad: " + useredad;
+                        TextView textView = (TextView) findViewById(R.id.textViewEdad);
+                        textView.setText(text);
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -287,6 +320,5 @@ public class pantallaMiPerfil extends AppCompatActivity {
         finish();
 
     }
-
 
 }
