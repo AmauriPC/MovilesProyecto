@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
     TextView username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cont=(TextView)findViewById(R.id.textContraseña);
@@ -86,10 +85,11 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
 
     @Override
     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-        Log.i("test","testeando");
+        int i=0;
         if (task.isSuccessful()) {
             for (QueryDocumentSnapshot document : task.getResult()) {
                 if(document.getId().equals(username.getText().toString())) {
+                    i+=1;
                     String prueba=document.getId();
                     Intent intent = new Intent(this, pantallaIntereses.class);
                     intent.putExtra("userid", username.getText().toString());
@@ -99,13 +99,9 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
                     Log.println(Log.ASSERT,"Correo","El correo no existe");
                 }
             }
-        } else {
-            Log.println(Log.ASSERT,"Nel","Contraseña o usuario incorrecto");
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(getBaseContext(), "Usuario o contraseña incorrectos", duration);
-            toast.show();
-
-            //Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+        }
+        if(i==0){
+            Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
         //Log.println(Log.ASSERT,"prueba","prueba"+task.isSuccessful());
     }
