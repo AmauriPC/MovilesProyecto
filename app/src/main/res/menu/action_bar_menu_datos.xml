@@ -2,6 +2,13 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Mi perfil" />
-    <item android:title="Cerrar sesion" />
+    <item
+        android:id="@+id/menuPrincipal"
+        android:title="Menu Principal" />
+    <item
+        android:id="@+id/miPerfil"
+        android:title="Mi perfil" />
+    <item
+        android:id="@+id/cerrarSesion"
+        android:title="Cerrar sesion" />
 </menu>

@@ -73,14 +73,23 @@ public class pantallaDatosRegistro extends AppCompatActivity {
         user.put("Edad",ageS);
 
         if(cbAnime.isChecked())user.put("Anime","True");
+        else{user.put("Anime","False");}
         if(cbGames.isChecked())user.put("Videojuegos","True");
+        else{user.put("Videojuegos","False");}
         if(cbLiterature.isChecked())user.put("Literatura","True");
+        else{user.put("Literatura","False");}
         if(cbSports.isChecked())user.put("Deportes","True");
+        else{user.put("Deportes","False");}
         if(cbCine.isChecked())user.put("Cine","True");
+        else{user.put("Cine","False");}
         if(cbMusic.isChecked())user.put("Musica","True");
+        else{user.put("Musica","False");}
         if(cbSeries.isChecked())user.put("Series","True");
+        else{user.put("Series","False");}
         if(cbArt.isChecked())user.put("Arte","True");
+        else{user.put("Arte","False");}
         if(cbAstrology.isChecked())user.put("Astrologia","True");
+        else{user.put("Astrologia","False");}
 
 
         db.collection("users").document(mailS).set(user);
@@ -112,6 +121,7 @@ public class pantallaDatosRegistro extends AppCompatActivity {
         else
         {
             Intent intent = new Intent(getApplicationContext(), pantallaIntereses.class);
+            intent.putExtra("userid",txtCorreo.getText().toString());
             startActivity(intent);
             crearUsuario();
             Toast.makeText(this, "¡Usuario Creado!", Toast.LENGTH_SHORT).show();
