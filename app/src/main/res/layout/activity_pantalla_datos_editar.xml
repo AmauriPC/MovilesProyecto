@@ -1,54 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
 
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Fondo">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-
-        tools:context=".pantallaDatosEditar">
-
-
-        <TextView
-            android:id="@+id/datosTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Tus Datos"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="36sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/fotoPersona"
-            android:layout_width="181dp"
-            android:layout_height="228dp"
-            android:layout_marginTop="28dp"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/datosTV"
-            tools:srcCompat="@tools:sample/avatars" />
+    android:background="@color/Fondo"
+    tools:context=".pantallaDatosEditar">
 
         <TextView
             android:id="@+id/interesesTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="Tus Intereses"
             android:textAlignment="center"
@@ -57,19 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSubirFoto" />
-
-        <Button
-            android:id="@+id/btnSubirFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/BotonesColor"
-            android:text="Subir Foto"
-            android:textColor="@color/Letras"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fotoPersona" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <CheckBox
             android:id="@+id/animeCB"
@@ -166,26 +118,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/arteCB" />
 
-        <Button
-            android:id="@+id/btnGuardarCambios"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="46dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/BotonesColor"
-            android:onClick="getActivityIntereses"
-            android:text="Guardar Cambios"
-            android:textColor="@color/Letras"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/astrologiaCB"
-            app:layout_constraintVertical_bias="0.0" />
+    <Button
+        android:id="@+id/btnGuardarCambios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/BotonesColor"
+        android:onClick="getActivityIntereses"
+        android:text="Guardar Cambios"
+        android:textColor="@color/Letras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/astrologiaCB"
+        app:layout_constraintVertical_bias="0.538" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
 
 
 
